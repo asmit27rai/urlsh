@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  frontend:
+    image: url-shortener-frontend
+    build: ./frontend
+    ports:
+      - "3003:80"
+    environment:
+      - VITE_BACKEND_URL=http://backend:8080
+    depends_on:
+      - backend
+
+  backend:
+    image: url-shortener-backend
+    build: ./backend
+    ports:
+      - "8080:8080"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
