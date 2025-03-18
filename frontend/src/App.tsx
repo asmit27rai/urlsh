@@ -26,7 +26,12 @@ function App() {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      const data: Url[] = await response.json();
+      const data: Url[] | null = await response.json();
+
+      if (!data || data.length === 0) {
+        setUrls([]);
+        return;
+      }
       setUrls(data);
     } catch (error) {
       console.error("Error fetching URLs:", error);

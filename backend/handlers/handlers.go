@@ -34,6 +34,9 @@ func GetAllURLs(c *gin.Context) {
         c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
         return
     }
+    if urls == nil {
+        urls = []models.URL{}
+    }
     c.JSON(http.StatusOK, urls)
 }
 
