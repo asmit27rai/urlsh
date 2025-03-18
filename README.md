@@ -1,11 +1,12 @@
 # URL Shortener
 
-A full-stack URL shortener application built with **Go** (backend), **React** (frontend), and **Redis** (database). The application allows users to shorten long URLs and provides a simple analytics dashboard to track the number of clicks on each shortened URL.
+A full-stack URL shortener application built with **Go** (backend), **React** (frontend), and **Redis** (database). The application allows users to shorten long URLs and provides a simple analytics dashboard to track the number of clicks on each shortened URL. Additionally, it includes **Prometheus** and **Grafana** for monitoring and visualizing application metrics.
 
 ## Features
 
 - **Shorten URLs**: Convert long URLs into short, easy-to-share links.
 - **Analytics Dashboard**: Track the number of clicks for each shortened URL.
+- **Monitoring**: Integrated with **Prometheus** and **Grafana** for real-time metrics and visualization.
 - **Responsive UI**: Built with modern React components and Tailwind CSS.
 - **Scalable Backend**: Built with Go and deployed using Docker and Kubernetes.
 - **Redis Integration**: Stores URLs and click counts efficiently.
@@ -15,6 +16,7 @@ A full-stack URL shortener application built with **Go** (backend), **React** (f
 - **Frontend**: React, Tailwind CSS
 - **Backend**: Go (Gin framework)
 - **Database**: Redis
+- **Monitoring**: Prometheus, Grafana
 - **Containerization**: Docker
-- **Orchestration**: Kubernetes (optional)
+- **Orchestration**: Kubernetes
 - **Environment Management**: Docker Compose
