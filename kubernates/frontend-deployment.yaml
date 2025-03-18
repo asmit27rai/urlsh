@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: your-dockerhub-username/url-shortener-frontend:latest
+        image: asmitk1927/url-shortener-frontend:latest
         ports:
         - containerPort: 80
         env:

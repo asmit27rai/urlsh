@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: your-dockerhub-username/url-shortener-backend:latest
+        image: asmitk1927/url-shortener-backend:latest
         ports:
         - containerPort: 8080
         env:
