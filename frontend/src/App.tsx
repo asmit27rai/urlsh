@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
+import axios from "axios";
 
 interface Url {
   short_code: string;
@@ -19,6 +20,17 @@ function App() {
   const [urls, setUrls] = useState<Url[]>([]);
   const [longUrl, setLongUrl] = useState<string>("");
   const Backend_URL = import.meta.env.VITE_BACKEND_URL;
+
+  const trackMetric = async (event: string, value: number = 1): Promise<void> => {
+    try {
+      await axios.post(`${Backend_URL}/metrics`, {
+        event,
+        value,
+      });
+    } catch (error) {
+      console.error("Error tracking metric:", error);
+    }
+  };
 
   const fetchUrls = async (): Promise<void> => {
     try {
@@ -56,6 +68,7 @@ function App() {
       const data: ShortenResponse = await response.json();
       setUrls((prevUrls) => [...prevUrls, data]);
       setLongUrl("");
+      trackMetric("url_shortened");
     } catch (error) {
       console.error("Error shortening URL:", error);
     }
@@ -67,6 +80,7 @@ function App() {
         method: "POST",
       });
       fetchUrls();
+      trackMetric("url_clicked");
     } catch (error) {
       console.error("Error tracking click:", error);
     }
@@ -78,6 +92,7 @@ function App() {
 
   useEffect(() => {
     fetchUrls();
+    trackMetric("page_loaded");
   }, []);
 
   return (
